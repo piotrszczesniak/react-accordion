@@ -1,9 +1,7 @@
-// import { Accordion } from './components/Accordion';
+import { React } from 'react';
 import { useState } from 'react';
 
 function App() {
-  const [selected, setSelected] = useState();
-
   const accordionData = [
     {
       title: 'Section 1',
@@ -29,18 +27,24 @@ function App() {
     },
   ];
 
-  const toggleSelectedItem = (i) => {
-    setSelected(i);
-  };
+  const [selected, setSelected] = useState(null);
+
+  function setActive(index) {
+    if (selected === index) {
+      console.log('equal');
+    }
+  }
 
   return (
-    <div className="App">
-      <h1>{selected}</h1>
+    <div className='App'>
+      <h3>Current selection: {selected}</h3>
       {accordionData.map((item, index) => (
-        <button key={index} onClick={() => toggleSelectedItem(index)}>
-          {' '}
-          button {index}
-        </button>
+        <div onClick={() => setActive(index)} key={index}>
+          <h3>
+            {item.title} index: {index}
+          </h3>
+          <p>{item.content}</p>
+        </div>
       ))}
     </div>
   );
