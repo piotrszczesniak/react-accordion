@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
+import classNames from 'classnames';
+import styles from './Accordion.module.scss';
 
 const Accordion = () => {
   const [opened, setOpened] = useState(0);
@@ -12,13 +14,25 @@ const Accordion = () => {
     }
   }
   return (
-    <div>
+    <div className={classNames(styles.accordion)}>
       {accordionData.map((item, index) => (
-        <div onClick={() => setActive(index)} key={index}>
-          <h3>
-            {item.title} {opened === index ? '-' : '+'}
+        <div
+          className={classNames(styles.item)}
+          onClick={() => setActive(index)}
+          key={index}
+        >
+          <h3 className={classNames(styles.title)}>
+            {item.title}{' '}
+            <span className={styles.icon}>{opened === index ? '-' : '+'}</span>
           </h3>
-          <p>{item.content}</p>
+
+          <p
+            className={classNames(styles.content, {
+              [styles.open]: opened === index,
+            })}
+          >
+            {item.content}
+          </p>
         </div>
       ))}
     </div>
@@ -27,14 +41,14 @@ const Accordion = () => {
 
 const accordionData = [
   {
-    title: 'Section 1',
+    title: 'Question 1',
     content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis sapiente
     laborum cupiditate possimus labore, hic temporibus velit dicta earum
     suscipit commodi eum enim atque at? Et perspiciatis dolore iure
     voluptatem.`,
   },
   {
-    title: 'Section 2',
+    title: 'Question 2',
     content: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia veniam
     reprehenderit nam assumenda voluptatem ut. Ipsum eius dicta, officiis
     quaerat iure quos dolorum accusantium ducimus in illum vero commodi
@@ -43,7 +57,7 @@ const accordionData = [
     Repudiandae, mollitia id reprehenderit a ab odit!`,
   },
   {
-    title: 'Section 3',
+    title: 'Question 3',
     content: `Sapiente expedita hic obcaecati, laboriosam similique omnis architecto ducimus magnam accusantium corrupti
     quam sint dolore pariatur perspiciatis, necessitatibus rem vel dignissimos
     dolor ut sequi minus iste? Quas?`,
