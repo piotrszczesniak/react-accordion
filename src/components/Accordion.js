@@ -23,7 +23,9 @@ const Accordion = () => {
         >
           <h3 className={classNames(styles.title)}>
             {item.title}{' '}
-            <span className={styles.icon}>{opened === index ? '-' : '+'}</span>
+            <span className={styles['toggle-icon']}>
+              {opened === index ? '-' : '+'}
+            </span>
           </h3>
 
           <p
