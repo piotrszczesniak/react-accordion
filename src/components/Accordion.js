@@ -4,33 +4,26 @@ import classNames from 'classnames';
 import styles from './Accordion.module.scss';
 
 const Accordion = () => {
-  const [opened, setOpened] = useState(0);
+  const [open, setOpen] = useState(0);
 
-  function setActive(index) {
-    if (opened === index) {
-      setOpened(null);
+  const handleOpen = (index) => {
+    if (open === index) {
+      setOpen(null);
     } else {
-      setOpened(index);
+      setOpen(index);
     }
-  }
+  };
   return (
     <div className={classNames(styles.accordion)}>
       {accordionData.map((item, index) => (
-        <div
-          className={classNames(styles.item)}
-          onClick={() => setActive(index)}
-          key={index}
-        >
+        <div className={classNames(styles.item)} onClick={() => handleOpen(index)} key={index}>
           <h3 className={classNames(styles.title)}>
-            {item.title}{' '}
-            <span className={styles['toggle-icon']}>
-              {opened === index ? '-' : '+'}
-            </span>
+            {item.title} <span className={styles['toggle-icon']}>{open === index ? '-' : '+'}</span>
           </h3>
 
           <p
             className={classNames(styles.content, {
-              [styles.open]: opened === index,
+              [styles.open]: open === index,
             })}
           >
             {item.content}

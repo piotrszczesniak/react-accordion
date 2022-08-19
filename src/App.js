@@ -3,7 +3,7 @@ import { Accordion } from './components/Accordion';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <Accordion />
     </div>
   );
